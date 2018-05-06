@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { db } from '../firebase/firebase'
-import { Link, Route } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { HandledSnapsMap } from './PackedSnaps'
 
 const FeedLink = ({ id, name }) => (

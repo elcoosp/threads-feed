@@ -12,7 +12,6 @@ class NewThreadForm extends Component {
   setStateKey = key => data => this.setState(prevState => ({ [key]: data }))
   onSubmit = values => {
     const { feedName, threadLink } = values
-    const { history } = this.props
     const feedRef = db.collection('feeds').doc(feedName)
 
     feedRef.set({ name: feedName })
@@ -38,4 +37,4 @@ class NewThreadForm extends Component {
   }
 }
 
-export default NewThreadForm
+export default authorizations.hasSignedIn(NewThreadForm)

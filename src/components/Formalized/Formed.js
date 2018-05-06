@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react'
-import ReactDOM from 'react-dom'
 
 export default class Formed extends Component {
   state = Object.assign(
@@ -25,10 +24,14 @@ export default class Formed extends Component {
 
   // TODO: Check if not anti pattern to pass thiss function as a callback
   injectErrors = errors =>
-    Object.entries(errors).forEach(([fieldName, message]) => this.setError(fieldName, message))
+    Object.entries(errors).forEach(([fieldName, message]) =>
+      this.setError(fieldName, message)
+    )
 
   validateField = (fieldName, inputValue) => {
-    const { validators } = this.props.fields.filter(({ name }) => name === fieldName)[0]
+    const { validators } = this.props.fields.filter(
+      ({ name }) => name === fieldName
+    )[0]
     //Pass the wole state values and the last inputValue to the validator function
     const stateValues = { ...this.state.values, [fieldName]: inputValue }
     for (const [validatorFunc, message] of validators) {
@@ -49,14 +52,16 @@ export default class Formed extends Component {
 
   onSubmit = e => {
     e.preventDefault()
-    if (this.validateAllFields()) this.props.submit(this.state.values, this.injectErrors)
+    if (this.validateAllFields())
+      this.props.submit(this.state.values, this.injectErrors)
     // Reveal errors if none were shown
     else if (this.state.blurredFields.length === 0) {
       Object.keys(this.state.values).forEach(this.addBlurredField)
     }
   }
 
-  isSubmitDisabled = () => Object.entries(this.state.errors).some(([key, val]) => val.length > 0)
+  isSubmitDisabled = () =>
+    Object.entries(this.state.errors).some(([key, val]) => val.length > 0)
 
   addBlurredField = name =>
     this.setState(({ blurredFields }) => ({
@@ -83,7 +88,9 @@ export default class Formed extends Component {
               name={name}
             />
             {errors[name] &&
-              blurredFields.includes(name) && <ErrorMessage>{errors[name]}</ErrorMessage>}
+              blurredFields.includes(name) && (
+                <ErrorMessage>{errors[name]}</ErrorMessage>
+              )}
           </Fragment>
         ))}
         <Button type="submit" disabled={this.isSubmitDisabled()} />

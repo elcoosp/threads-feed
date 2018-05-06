@@ -1,7 +1,5 @@
 import formalize from './formalize'
 import { isEmail, isLength, isURL } from 'validator'
-import React, { Component, Fragment } from 'react'
-import ReactDOM from 'react-dom'
 
 const Formalized = formalize([
   {
@@ -40,7 +38,9 @@ const Formalized = formalize([
   },
   {
     name: 'threadLink',
-    validators: [[({ threadLink }) => isURL(threadLink), 'Thread link must be a url']]
+    validators: [
+      [({ threadLink }) => isURL(threadLink), 'Thread link must be a url']
+    ]
   }
 ])()
 

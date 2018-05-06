@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Fragment } from 'react'
 import { db } from '../firebase/firebase'
 import { HandledSnapsMap } from './PackedSnaps'
 import ThreadCard from './ThreadCard'

@@ -1,5 +1,13 @@
 import React, { Component } from 'react'
-import { packSnaps } from '../utils'
+const packSnaps = (query, cb, errorCb) =>
+  query.onSnapshot(snaps => {
+    let packedSnaps = []
+    snaps.forEach(
+      snap => snap.exists && packedSnaps.push({ ...snap.data(), id: snap.id })
+    )
+    cb(packedSnaps)
+  }, errorCb)
+
 class PackedSnaps extends Component {
   state = {
     data: null,

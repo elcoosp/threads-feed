@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { auth } from '../firebase'
 import * as routes from '../constants/routes'
-import PasswordChangeForm from './PasswordChange'
 import Formalized from './Formalized'
 const SignUpPage = () => (
   <div>
