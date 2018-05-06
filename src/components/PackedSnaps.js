@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 const packSnaps = (query, cb, errorCb) =>
   query.onSnapshot(snaps => {
     let packedSnaps = []
@@ -25,18 +26,21 @@ class PackedSnaps extends Component {
   componentWillUnmount = () => this.unsubscribe()
 
   render() {
-    const Loader = this.props.loader
     const { error, data } = this.state
-    return error || data ? this.props.children({ error, data }) : <Loader />
+    return error || data
+      ? this.props.children({ error, data, loading: false })
+      : this.props.children({ error, data, loading: true })
   }
 }
 
 // TODO: pass config for components
 export const HandledSnapsMap = ({ query, mapTo }) => (
-  <PackedSnaps loader={() => <span>Loading</span>} query={query}>
-    {({ data, error }) => {
+  <PackedSnaps query={query}>
+    {({ data, error, loading }) => {
       const Component = mapTo
-      return data ? (
+      return loading ? (
+        <span>Loading</span>
+      ) : data ? (
         <div>{data.map(doc => <Component key={doc.id} {...doc} />)}</div>
       ) : (
         error && <span>An error occured</span>
