@@ -1,20 +1,22 @@
 import React, { Component } from 'react'
 import { db } from '../firebase/firebase'
-
+import { Link, Route } from 'react-router-dom'
+import * as routes from '../constants/routes'
+import { packSnaps } from '../utils'
 class FeedsNavigator extends Component {
   state = {
     newFeeds: []
   }
-  componentDidMount = () => {
-    db
-      .collection('feeds')
-      .where('new', '==', true)
-      .onSnapshot(snaps => {
-        let newFeeds = []
-        snaps.forEach(snap => newFeeds.push({ ...snap.data(), id: snap.id }))
+  set = key => data => this.setState(state => ({ [key]: data }))
 
-        this.setState(state => ({ newFeeds }))
-      })
+  componentDidMount = () => {
+    packSnaps(
+      db
+        .collection('feeds')
+        .orderBy('name')
+        .limit(2),
+      this.set(`newFeeds`)
+    )
   }
 
   render() {
@@ -23,9 +25,14 @@ class FeedsNavigator extends Component {
     return (
       <div>
         <h1>Feeds</h1>
-        <ul />
 
-        {newFeeds.map(({ name, id }) => <li key={id}>{name}</li>)}
+        <ul>
+          {newFeeds.map(({ name, id }) => (
+            <Link key={id} to={`/feed/${id}`}>
+              {name}
+            </Link>
+          ))}
+        </ul>
       </div>
     )
   }

@@ -15,7 +15,7 @@ class NewThreadForm extends Component {
     const { history } = this.props
     const feedRef = db.collection('feeds').doc(feedName)
 
-    feedRef.set({ name: feedName, new: true })
+    feedRef.set({ name: feedName })
     feedRef
       .collection('threads')
       .add({ threadLink })
