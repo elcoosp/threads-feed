@@ -6,7 +6,7 @@ import { firebase } from '../firebase'
 import * as routes from '../constants/routes'
 
 import Navigation from './Navigation'
-import FeedList from './FeedList'
+import FeedThreadsList from './FeedThreadsList'
 import LandingPage from './Landing'
 import SignUpPage from './SignUp'
 import SignInPage from './SignIn'
@@ -30,7 +30,7 @@ const App = () => (
       />
       <Route exact path={routes.HOME} component={() => <HomePage />} />
       <Route exact path={routes.ACCOUNT} component={() => <AccountPage />} />
-      <Route exact path={routes.FEED_ID} component={() => <FeedList />} />
+      <Route exact path={routes.FEED_ID} component={FeedThreadsList} />
     </div>
   </Router>
 )
