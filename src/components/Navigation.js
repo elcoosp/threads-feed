@@ -10,9 +10,6 @@ const Navigation = consumeAuthUser(({ authUser }) => (
       {authUser ? (
         <F>
           <li>
-            <Link to={routes.LANDING}>Landing</Link>
-          </li>
-          <li>
             <Link to={routes.FEEDS}>Feeds</Link>
           </li>
           <li>
