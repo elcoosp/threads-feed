@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { HandledSnapsMap } from './PackedSnaps'
 
 const FeedLink = ({ id, name }) => (
-  <Link key={id} to={`/feed/${id}`}>
+  <Link key={id} to={`/feeds/${id}`}>
     {name}
   </Link>
 )

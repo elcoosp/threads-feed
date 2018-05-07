@@ -27,7 +27,7 @@ const App = () => (
           path={routes.PASSWORD_FORGET}
           component={() => <PasswordForgetPage />}
         />
-        <Route exact path={routes.FEEDS} component={() => <FeedsPage />} />
+        <Route path={routes.FEEDS} component={() => <FeedsPage />} />
         <Route exact path={routes.ACCOUNT} component={() => <AccountPage />} />
       </Switch>
     </div>

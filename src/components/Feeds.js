@@ -1,12 +1,11 @@
 import React, { Fragment } from 'react'
 import { authorizations } from './withAuthorization'
 import NewThreadForm from './NewThreadForm'
-import { Switch, Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import FeedsNavigator from './FeedsNavigator'
 import FeedThreadsList from './FeedThreadsList'
-import * as routes from '../constants/routes'
 
-const FeedList = () => (
+const FeedsHome = () => (
   <Fragment>
     <h1>Feeds </h1>
     <NewThreadForm />
@@ -14,11 +13,13 @@ const FeedList = () => (
   </Fragment>
 )
 
-const FeedsPage = authorizations.hasSignedIn(({ authUser }) => (
-  <Switch>
-    <Route exact path={routes.FEEDS} component={FeedList} />
-    <Route exact path={routes.FEED_ID} component={FeedThreadsList} />
-  </Switch>
-))
+const FeedsPage = authorizations.hasSignedIn(({ authUser, match: { url } }) => {
+  return (
+    <Switch>
+      <Route path={url + '/:id'} component={FeedThreadsList} />
+      <Route exact path={url} component={FeedsHome} />
+    </Switch>
+  )
+})
 
 export default FeedsPage
