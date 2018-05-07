@@ -11,13 +11,13 @@ class NewThreadForm extends Component {
 
   setStateKey = key => data => this.setState(prevState => ({ [key]: data }))
   onSubmit = values => {
-    const { feedName, threadLink } = values
+    const { feedName, threadLink, threadName } = values
     const feedRef = db.collection('feeds').doc(feedName)
 
     feedRef.set({ name: feedName })
     feedRef
       .collection('threads')
-      .add({ threadLink })
+      .add({ threadLink, threadName })
       .then(resp => this.setState(prevState => ({ success: true })))
       .catch(e => this.setState(prevState => ({ error: e })))
   }
@@ -27,7 +27,11 @@ class NewThreadForm extends Component {
     return (
       <div>
         <Formalized
-          pickFields={({ feedName, threadLink }) => [feedName, threadLink]}
+          pickFields={({ feedName, threadLink, threadName }) => [
+            threadName,
+            threadLink,
+            feedName
+          ]}
           submit={this.onSubmit}
         />
         {error && <span>{error}</span>}
