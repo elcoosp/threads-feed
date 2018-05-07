@@ -41,6 +41,24 @@ const Formalized = formalize([
     validators: [
       [({ threadLink }) => isURL(threadLink), 'Thread link must be a url']
     ]
+  },
+  {
+    name: 'threadName',
+    validators: [
+      [
+        ({ threadName }) => isLength(threadName, { min: 3, max: 60 }),
+        'Thread name must be between 3 and 60 characters'
+      ]
+    ]
+  },
+  {
+    name: 'comment',
+    validators: [
+      [
+        ({ comment }) => isLength(comment, { min: 3, max: 60 }),
+        'Comment name must be between 3 and 400 characters'
+      ]
+    ]
   }
 ])()
 
