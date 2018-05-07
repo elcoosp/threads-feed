@@ -1,7 +1,7 @@
 export const SIGN_UP = '/signup'
 export const SIGN_IN = '/signin'
 export const LANDING = '/'
-export const HOME = '/home'
+export const FEEDS = '/feeds'
+export const FEED_ID = `/feeds/:id`
 export const ACCOUNT = '/account'
-export const FEED_ID = `/feed/:id`
 export const PASSWORD_FORGET = '/pw-forget'

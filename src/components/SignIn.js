@@ -42,7 +42,7 @@ const SignInForm = withRouter(
         .doSignInWithEmailAndPassword(email, password)
         .then(() => {
           this.setState(() => ({ ...INITIAL_STATE }))
-          history.push(routes.HOME)
+          history.push(routes.FEEDS)
         })
         .catch(error => {
           this.setState(byPropKey('error', error))
@@ -60,13 +60,17 @@ const SignInForm = withRouter(
         <form onSubmit={this.onSubmit}>
           <input
             value={email}
-            onChange={event => this.setState(byPropKey('email', event.target.value))}
+            onChange={event =>
+              this.setState(byPropKey('email', event.target.value))
+            }
             type="text"
             placeholder="Email Address"
           />
           <input
             value={password}
-            onChange={event => this.setState(byPropKey('password', event.target.value))}
+            onChange={event =>
+              this.setState(byPropKey('password', event.target.value))
+            }
             type="password"
             placeholder="Password"
           />

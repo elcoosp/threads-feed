@@ -1,7 +1,7 @@
 import Formed from './Formed'
 import React from 'react'
 
-const pipe = (initAcc, ...fns) => fns.reduce((acc, f) => f(acc), initAcc)
+const pipe = (...fns) => initAcc => fns.reduce((acc, f) => f(acc), initAcc)
 const toNameKeyObj = arrayOfObjWithNameKey =>
   arrayOfObjWithNameKey.reduce((acc, obj) => {
     acc[obj.name] = obj.name
@@ -24,11 +24,10 @@ const formalize = fieldsDefinitions => (
     {...props}
     components={components}
     fields={pipe(
-      fieldsDefinitions,
       toNameKeyObj,
       pickFields,
       mapFieldsNameToDefs(fieldsDefinitions)
-    )}
+    )(fieldsDefinitions)}
   />
 )
 

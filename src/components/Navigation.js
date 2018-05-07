@@ -13,7 +13,7 @@ const Navigation = consumeAuthUser(({ authUser }) => (
             <Link to={routes.LANDING}>Landing</Link>
           </li>
           <li>
-            <Link to={routes.HOME}>Home</Link>
+            <Link to={routes.FEEDS}>Feeds</Link>
           </li>
           <li>
             <Link to={routes.ACCOUNT}>Account</Link>

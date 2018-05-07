@@ -25,7 +25,7 @@ const SignUpForm = withRouter(
       auth
         .doCreateUserWithEmailAndPassword(email, password)
         .then(authUser => {
-          history.push(routes.HOME)
+          history.push(routes.FEEDS)
         })
         .catch(error => {
           this.setState(byPropKey('error', error))
