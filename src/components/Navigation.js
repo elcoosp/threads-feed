@@ -3,9 +3,10 @@ import * as routes from '../constants/routes'
 import { consumeAuthUser } from './AuthUserContext'
 import { Link } from 'react-router-dom'
 import SignOutButton from './SignOut'
+import UI from './ui'
 
 const Navigation = consumeAuthUser(({ authUser }) => (
-  <div>
+  <UI.Header>
     <ul>
       {authUser ? (
         <F>
@@ -30,7 +31,7 @@ const Navigation = consumeAuthUser(({ authUser }) => (
         </F>
       )}
     </ul>
-  </div>
+  </UI.Header>
 ))
 
 export default Navigation

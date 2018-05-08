@@ -11,7 +11,7 @@ export default withRouter(
     toggle = key => () =>
       this.setState(prevState => ({ [key]: !prevState[key] }))
     render() {
-      const { threadLink, threadName, match, id } = this.props
+      const { threadLink, threadName, match, id, likes } = this.props
       const { commentsVisible } = this.state
       const commentsPath = `${match.url}/threads/${id}/comments`
       return (

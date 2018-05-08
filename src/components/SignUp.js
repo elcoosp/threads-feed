@@ -34,6 +34,7 @@ const SignUpForm = withRouter(
 
     render() {
       const { error } = this.state
+
       return (
         <div>
           <Formalized
@@ -44,7 +45,7 @@ const SignUpForm = withRouter(
             ]}
             submit={this.onSubmit}
           />
-          {error && <span>{error}</span>}
+          {error && <span>An error occured</span>}
         </div>
       )
     }
