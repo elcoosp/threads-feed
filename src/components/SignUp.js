@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { auth } from '../firebase'
 import * as routes from '../constants/routes'
+import { Main } from './ui'
+
 import Formalized from './Formalized'
 const SignUpPage = () => (
-  <div>
+  <Main>
     <h1>SignUp</h1>
     <SignUpForm />
-  </div>
+  </Main>
 )
 
 const byPropKey = (propertyName, value) => () => ({

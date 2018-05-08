@@ -1,6 +1,6 @@
-import Header from './Header'
-import Navigation from './Navigation'
-export default {
-  Header,
-  Navigation
-}
+export { default as Header } from './Header'
+export { default as Navigation } from './Navigation'
+export { default as NavLink } from './NavLink'
+export { default as Main } from './Main'
+export { default as Button } from './Button'
+export { default as Layout } from './Layout'

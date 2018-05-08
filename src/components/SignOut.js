@@ -1,12 +1,13 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
+import { Button } from './ui'
 
 import { auth } from '../firebase'
 
 const SignOutButton = withRouter(({ history }) => (
-  <button type="button" onClick={() => auth.doSignOut()}>
+  <Button type="button" onClick={() => auth.doSignOut()}>
     Sign Out
-  </button>
+  </Button>
 ))
 
 export default SignOutButton

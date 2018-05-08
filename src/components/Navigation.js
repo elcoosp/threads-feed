@@ -1,37 +1,30 @@
 import React, { Fragment as F } from 'react'
 import * as routes from '../constants/routes'
 import { consumeAuthUser } from './AuthUserContext'
+import SignOut from './SignOut'
+import { Header, Navigation as NavUi, NavLink, Button } from './ui'
 import { Link } from 'react-router-dom'
-import SignOutButton from './SignOut'
-import UI from './ui'
-
+const SigInLink = Button.withComponent(Link)
 const Navigation = consumeAuthUser(({ authUser }) => (
-  <UI.Header>
-    <UI.Navigation>
+  <Header>
+    <NavUi>
       {authUser ? (
         <F>
-          <li>
-            <Link to={routes.FEEDS}>Feeds</Link>
-          </li>
-          <li>
-            <Link to={routes.ACCOUNT}>Account</Link>
-          </li>
-          <li>
-            <SignOutButton />
-          </li>
+          <NavLink to={routes.FEEDS}>Feeds</NavLink>
+
+          <NavLink to={routes.ACCOUNT}>Account</NavLink>
+
+          <SignOut />
         </F>
       ) : (
         <F>
-          <li>
-            <Link to={routes.LANDING}>Landing</Link>
-          </li>
-          <li>
-            <Link to={routes.SIGN_IN}>Sign In</Link>
-          </li>
+          <NavLink to={routes.LANDING}>Landing</NavLink>
+
+          <SigInLink to={routes.SIGN_IN}>Sign In</SigInLink>
         </F>
       )}
-    </UI.Navigation>
-  </UI.Header>
+    </NavUi>
+  </Header>
 ))
 
 export default Navigation

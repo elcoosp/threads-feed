@@ -6,4 +6,5 @@ export default styled.header`
   align-items: stretch;
   justify-content: center;
   background-image: ${tm`gradient.primary`};
+  box-shadow: ${tm`shadow.medium`};
 `

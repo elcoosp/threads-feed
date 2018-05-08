@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { ThemeProvider, injectGlobal } from 'styled-components'
 import styledNormalize from 'styled-normalize'
@@ -8,6 +8,7 @@ import Navigation from './Navigation'
 import LandingPage from './Landing'
 import SignUpPage from './SignUp'
 import SignInPage from './SignIn'
+import { Layout } from './ui'
 import PasswordForgetPage from './PasswordForget'
 import FeedsPage from './Feeds'
 import AccountPage from './Account'
@@ -15,6 +16,7 @@ import { provideAuthUser } from './AuthUserContext'
 
 injectGlobal`
 * {
+  box-sizing: border-box;
   font-family: 'Inconsolata', monospace;
   font-weight: 300;
 }
@@ -24,8 +26,9 @@ ${styledNormalize}`
 const App = () => (
   <ThemeProvider theme={theme}>
     <Router>
-      <div>
+      <Layout>
         <Navigation />
+
         <Switch>
           <Route
             exact
@@ -46,7 +49,7 @@ const App = () => (
             component={() => <AccountPage />}
           />
         </Switch>
-      </div>
+      </Layout>
     </Router>
   </ThemeProvider>
 )

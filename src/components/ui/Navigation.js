@@ -3,9 +3,16 @@ import { tm } from './theme'
 export default styled.ul`
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-around;
+  padding: ${tm`spacing.medium`};
+  min-height: 50px;
+  justify-content: start;
+  align-items: center;
   color: white;
   list-style: none;
   margin: 0;
-  padding: 0;
+  text-decoration: none;
+
+  > :last-child {
+    margin-left: auto;
+  }
 `
