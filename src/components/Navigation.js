@@ -7,7 +7,7 @@ import UI from './ui'
 
 const Navigation = consumeAuthUser(({ authUser }) => (
   <UI.Header>
-    <ul>
+    <UI.Navigation>
       {authUser ? (
         <F>
           <li>
@@ -30,7 +30,7 @@ const Navigation = consumeAuthUser(({ authUser }) => (
           </li>
         </F>
       )}
-    </ul>
+    </UI.Navigation>
   </UI.Header>
 ))
 

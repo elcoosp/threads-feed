@@ -14,6 +14,11 @@ import AccountPage from './Account'
 import { provideAuthUser } from './AuthUserContext'
 
 injectGlobal`
+* {
+  font-family: 'Inconsolata', monospace;
+  font-weight: 300;
+}
+
 ${styledNormalize}`
 
 const App = () => (
