@@ -4,8 +4,8 @@ const color = {
 }
 
 const gradient = {
-  primary: 'linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%)',
-  secondary: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+  primary: 'linear-gradient(to top left, #e14fad 0%, #f9d423 100%)',
+  secondary: 'linear-gradient(-225deg, #FF057C 0%, #8D0B93 50%, #321575 100%)'
 }
 
 const spacing = {

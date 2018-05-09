@@ -2,12 +2,11 @@ import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { auth } from '../firebase'
 import * as routes from '../constants/routes'
-import { Main } from './ui'
-
+import { Main, Title } from './ui'
 import Formalized from './Formalized'
 const SignUpPage = () => (
   <Main>
-    <h1>SignUp</h1>
+    <Title>SignUp</Title>
     <SignUpForm />
   </Main>
 )
@@ -17,7 +16,7 @@ const byPropKey = (propertyName, value) => () => ({
 })
 
 const SignUpForm = withRouter(
-  class CustomForm extends Component {
+  class SignUpForm extends Component {
     state = {
       error: null
     }
