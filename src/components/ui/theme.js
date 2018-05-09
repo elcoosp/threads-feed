@@ -1,8 +1,8 @@
 const color = {
-  primary: '#89f7fe',
-  secondary: '#667eea'
+  primary: '#f9d423',
+  secondary: '#321575',
+  warning: '#f77062'
 }
-
 const gradient = {
   primary: 'linear-gradient(to top left, #e14fad 0%, #f9d423 100%)',
   secondary: 'linear-gradient(-225deg, #FF057C 0%, #8D0B93 50%, #321575 100%)'

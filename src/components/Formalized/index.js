@@ -1,5 +1,7 @@
 import formalize from './formalize'
 import { isEmail, isLength, isURL } from 'validator'
+import { Input, Label, Form, Button, ErrorMessage } from '../ui'
+import React from 'react'
 
 const Formalized = formalize([
   {
@@ -60,6 +62,12 @@ const Formalized = formalize([
       ]
     ]
   }
-])()
+])({
+  Input,
+  Form,
+  Label,
+  ErrorMessage,
+  Button: p => <Button {...p}>Submit</Button>
+})
 
 export default Formalized
