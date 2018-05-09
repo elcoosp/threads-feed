@@ -1,85 +1,48 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { withRouter } from 'react-router-dom'
 
 import { PasswordForgetLink } from './PasswordForget'
 import { SignUpLink } from './SignUp'
 import { auth } from '../firebase'
 import * as routes from '../constants/routes'
+import Formalized from './Formalized'
+import { Main, Title } from './ui'
 
 const SignInPage = ({ history }) => (
-  <div>
-    <h1>SignIn</h1>
+  <Main>
+    <Title>Sign In</Title>
     <SignInForm history={history} />
     <PasswordForgetLink />
     <SignUpLink />
-  </div>
+  </Main>
 )
-
-const byPropKey = (propertyName, value) => () => ({
-  [propertyName]: value
-})
-
-const INITIAL_STATE = {
-  email: '',
-  password: '',
-  error: null
-}
 
 const SignInForm = withRouter(
   class SignInForm extends Component {
-    constructor(props) {
-      super(props)
-
-      this.state = { ...INITIAL_STATE }
-    }
-
-    onSubmit = event => {
-      const { email, password } = this.state
+    state = { error: null }
+    onSubmit = values => {
+      const { email, password } = values
 
       const { history } = this.props
 
       auth
         .doSignInWithEmailAndPassword(email, password)
-        .then(() => {
-          this.setState(() => ({ ...INITIAL_STATE }))
-          history.push(routes.FEEDS)
-        })
-        .catch(error => {
-          this.setState(byPropKey('error', error))
-        })
-
-      event.preventDefault()
+        .then(() => history.push(routes.FEEDS))
+        .catch(({ message }) =>
+          this.setState(prevState => ({ error: message }))
+        )
     }
 
     render() {
-      const { email, password, error } = this.state
-
-      const isInvalid = password === '' || email === ''
-
+      const { error } = this.state
       return (
-        <form onSubmit={this.onSubmit}>
-          <input
-            value={email}
-            onChange={event =>
-              this.setState(byPropKey('email', event.target.value))
-            }
-            type="text"
-            placeholder="Email Address"
+        <Fragment>
+          <Formalized
+            pickFields={({ email, password }) => [email, password]}
+            submit={this.onSubmit}
           />
-          <input
-            value={password}
-            onChange={event =>
-              this.setState(byPropKey('password', event.target.value))
-            }
-            type="password"
-            placeholder="Password"
-          />
-          <button disabled={isInvalid} type="submit">
-            Sign In
-          </button>
-
-          {error && <p>{error.message}</p>}
-        </form>
+          {error && <span>{error}</span>}
+        </Fragment>
       )
     }
   }
