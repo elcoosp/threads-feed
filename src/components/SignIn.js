@@ -6,7 +6,7 @@ import { SignUpLink } from './SignUp'
 import { auth } from '../firebase'
 import * as routes from '../constants/routes'
 import Formalized from './Formalized'
-import { Main, Title } from './ui'
+import { Main, Title, ErrorMessage } from './ui'
 
 const SignInPage = ({ history }) => (
   <Main>
@@ -41,7 +41,7 @@ const SignInForm = withRouter(
             pickFields={({ email, password }) => [email, password]}
             submit={this.onSubmit}
           />
-          {error && <span>{error}</span>}
+          {error && <ErrorMessage>{error}</ErrorMessage>}
         </Fragment>
       )
     }

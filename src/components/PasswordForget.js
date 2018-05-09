@@ -1,60 +1,36 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
-
+import Formalized from './Formalized'
+import { Main, Title, ErrorMessage } from './ui'
 import { auth } from '../firebase'
 
 const PasswordForgetPage = () => (
-  <div>
-    <h1>Password Forget</h1>
+  <Main>
+    <Title>Password Forget</Title>
     <PasswordForgetForm />
-  </div>
+  </Main>
 )
 
-const byPropKey = (propertyName, value) => () => ({
-  [propertyName]: value
-})
-
-const INITIAL_STATE = {
-  email: '',
-  error: null
-}
-
 class PasswordForgetForm extends Component {
-  state = { ...INITIAL_STATE }
-  onSubmit = event => {
-    const { email } = this.state
-
+  state = { error: null, success: false }
+  onSubmit = values =>
     auth
-      .doPasswordReset(email)
-      .then(() => {
-        this.setState(() => ({ ...INITIAL_STATE }))
-      })
-      .catch(error => {
-        this.setState(byPropKey('error', error))
-      })
-
-    event.preventDefault()
-  }
+      .doPasswordReset(values.email)
+      .then(() => this.setState(() => ({ success: true })))
+      .catch(error => this.setState(state => ({ error: error.message })))
 
   render() {
-    const { email, error } = this.state
-
-    const isInvalid = email === ''
+    const { success, error } = this.state
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          value={this.state.email}
-          onChange={event => this.setState(byPropKey('email', event.target.value))}
-          type="text"
-          placeholder="Email Address"
+      <Fragment>
+        <Formalized
+          pickFields={({ email }) => [email]}
+          submit={this.onSubmit}
         />
-        <button disabled={isInvalid} type="submit">
-          Reset My Password
-        </button>
-
-        {error && <p>{error.message}</p>}
-      </form>
+        {error && <ErrorMessage>{error}</ErrorMessage>}
+        {success && <p>An email has been sended to your adress</p>}
+      </Fragment>
     )
   }
 }

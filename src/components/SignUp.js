@@ -1,19 +1,15 @@
 import React, { Component } from 'react'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { auth } from '../firebase'
 import * as routes from '../constants/routes'
-import { Main, Title } from './ui'
+import { Main, Title, ErrorMessage, Link } from './ui'
 import Formalized from './Formalized'
 const SignUpPage = () => (
   <Main>
-    <Title>SignUp</Title>
+    <Title>Sign up</Title>
     <SignUpForm />
   </Main>
 )
-
-const byPropKey = (propertyName, value) => () => ({
-  [propertyName]: value
-})
 
 const SignUpForm = withRouter(
   class SignUpForm extends Component {
@@ -25,12 +21,8 @@ const SignUpForm = withRouter(
       const { history } = this.props
       auth
         .doCreateUserWithEmailAndPassword(email, password)
-        .then(authUser => {
-          history.push(routes.FEEDS)
-        })
-        .catch(error => {
-          this.setState(byPropKey('error', error))
-        })
+        .then(authUser => history.push(routes.FEEDS))
+        .catch(error => this.setState(state => ({ error: error.message })))
     }
 
     render() {
@@ -46,7 +38,7 @@ const SignUpForm = withRouter(
             ]}
             submit={this.onSubmit}
           />
-          {error && <span>An error occured</span>}
+          {error && <ErrorMessage>An error occured</ErrorMessage>}
         </div>
       )
     }
